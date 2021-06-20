@@ -1,7 +1,8 @@
 ---
 title: "About this blog"
-description: |
-  Some additional details about the blog
+description: 
+  Reference:https://vast-challenge.github.io/2021/MC2.html
+
 ---
 
 ```{r setup, include=FALSE}

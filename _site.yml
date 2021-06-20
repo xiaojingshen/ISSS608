@@ -1,7 +1,5 @@
 name: "ISSS608"
-title: "My Blog"
-description: |
-  My Blog
+title: "G1-group2 Blog"
 output_dir: "docs"
 navbar:
   right:

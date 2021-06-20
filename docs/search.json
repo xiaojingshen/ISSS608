@@ -3,17 +3,17 @@
     {
       "path": "about.html",
       "title": "About this blog",
-      "description": "Some additional details about the blog",
+      "description": "Reference:https://vast-challenge.github.io/2021/MC2.html",
       "author": [],
       "contents": "\r\n\r\n\r\n\r\n",
-      "last_modified": "2021-05-22T08:06:55+08:00"
+      "last_modified": "2021-06-20T15:17:13+08:00"
     },
     {
       "path": "index.html",
-      "title": "My Blog",
+      "title": "G1-group2",
       "author": [],
       "contents": "\r\n\r\n\r\n\r\n",
-      "last_modified": "2021-05-22T08:06:55+08:00"
+      "last_modified": "2021-06-20T15:17:15+08:00"
     }
   ],
   "collections": ["posts/posts.json"]
