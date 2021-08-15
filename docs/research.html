@@ -86,26 +86,30 @@ code span.wa { color: #5e5e5e; font-style: italic; } /* Warning */
 </style>
 
   <!--radix_placeholder_meta_tags-->
-  <title>G1-group2 Visual Analytics Project</title>
+  <title>G1-group2 Visual Analytics Project: Practice Research Paper</title>
 
 
 
+  <!--  https://schema.org/Article -->
+  <meta property="article:published" itemprop="datePublished" content="2021-08-15"/>
+  <meta property="article:created" itemprop="dateCreated" content="2021-08-15"/>
+  <meta name="article:author" content="Li Yumeng, Liang Yingfang, Shen Xiaojing"/>
 
   <!--  https://developers.facebook.com/docs/sharing/webmasters#markup -->
-  <meta property="og:title" content="G1-group2 Visual Analytics Project"/>
+  <meta property="og:title" content="G1-group2 Visual Analytics Project: Practice Research Paper"/>
   <meta property="og:type" content="article"/>
   <meta property="og:locale" content="en_US"/>
   <meta property="og:site_name" content="G1-group2 Visual Analytics Project"/>
 
   <!--  https://dev.twitter.com/cards/types/summary -->
   <meta property="twitter:card" content="summary"/>
-  <meta property="twitter:title" content="G1-group2 Visual Analytics Project"/>
+  <meta property="twitter:title" content="G1-group2 Visual Analytics Project: Practice Research Paper"/>
 
   <!--/radix_placeholder_meta_tags-->
   <!--radix_placeholder_rmarkdown_metadata-->
 
   <script type="text/json" id="radix-rmarkdown-metadata">
-  {"type":"list","attributes":{"names":{"type":"character","attributes":{},"value":["title","site","listing"]}},"value":[{"type":"character","attributes":{},"value":["G1-group2 Visual Analytics Project"]},{"type":"character","attributes":{},"value":["distill::distill_website"]},{"type":"character","attributes":{},"value":["posts"]}]}
+  {"type":"list","attributes":{"names":{"type":"character","attributes":{},"value":["title","author","date","output"]}},"value":[{"type":"character","attributes":{},"value":["Practice Research Paper"]},{"type":"list","attributes":{},"value":[{"type":"list","attributes":{"names":{"type":"character","attributes":{},"value":["name"]}},"value":[{"type":"character","attributes":{},"value":["Li Yumeng, Liang Yingfang, Shen Xiaojing"]}]}]},{"type":"character","attributes":{},"value":["08-15-2021"]},{"type":"list","attributes":{"names":{"type":"character","attributes":{},"value":["distill::distill_article"]}},"value":[{"type":"list","attributes":{"names":{"type":"character","attributes":{},"value":["toc","toc_depth"]}},"value":[{"type":"logical","attributes":{},"value":[true]},{"type":"integer","attributes":{},"value":[3]}]}]}]}
   </script>
   <!--/radix_placeholder_rmarkdown_metadata-->
   <!--radix_placeholder_navigation_in_header-->
@@ -2045,12 +2049,12 @@ code span.wa { color: #5e5e5e; font-style: italic; } /* Warning */
 
 </head>
 
-<body class="layout-listing">
+<body>
 
 <!--radix_placeholder_front_matter-->
 
 <script id="distill-front-matter" type="text/json">
-{"title":"G1-group2 Visual Analytics Project","authors":[]}
+{"title":"Practice Research Paper","authors":[{"author":"Li Yumeng, Liang Yingfang, Shen Xiaojing","authorURL":"#","affiliation":"&nbsp;","affiliationURL":"#","orcidID":""}],"publishedDate":"2021-08-15T00:00:00.000+08:00","citationText":"Xiaojing, 2021"}
 </script>
 
 <!--/radix_placeholder_front_matter-->
@@ -2075,189 +2079,129 @@ code span.wa { color: #5e5e5e; font-style: italic; } /* Warning */
 <!--/radix_placeholder_navigation_before_body-->
 <!--radix_placeholder_site_before_body-->
 <!--/radix_placeholder_site_before_body-->
-<!--radix_placeholder_article_listing-->
-
-
-<script type="application/javascript">
-
-function init_posts_list() {
-
-  function load_image(img) {
-    var src = $(img).attr('data-src');
-    if (src) {
-      $(img).attr('src', src);
-      $(img).load(function() {
-        img.removeAttribute('data-src');
-      });
-    }
-  }
-
-  function set_posts_visible(posts, visible) {
-    if (visible) {
-
-      // show bottom border by default
-      $(posts).removeClass('post-preview-last');
-
-      // apply limits if need be
-      var max_posts = 25;
-      var apply_limits = $('.posts-container').hasClass('posts-apply-limit');
-      if (apply_limits && posts.length > max_posts) {
-        posts = $(posts).slice(0, max_posts);
-      } else {
-        $('.posts-more a').addClass('hidden');
-      }
-
-      // apply last style
-      $(posts.slice(-1)[0]).addClass('post-preview-last');
-
-      $(posts).removeClass('hidden');
-      $(posts).find('img[data-src]').each(function(i, img) {
-        load_image(img);
-      });
-    } else {
-      $(posts).addClass('hidden');
-    }
-  }
-
-  function apply_hash_filter() {
-
-    // clear active state
-    $('.categories .active').removeClass('active');
-
-    // mark all posts invisible to start
-    set_posts_visible($('.posts-list').children('a'), false);
-
-    // if we have a hash filter
-    if (window.location.hash && window.location.hash.startsWith("#category:")) {
-
-      // mark posts that match the category visible
-      var page_category = window.location.hash.replace(/^#category:/, "");
-      var posts = $('.post-metadata').map(function(idx, script) {
-        var metadata = $.parseJSON($(script).html());
-        var post = null;
-        $.each(metadata.categories, function(idx, category) {
-          category = category.replace(/ /g,"_");
-          if ((page_category || '').toLowerCase() === "articles" || category === page_category) {
-            post = $(script).parent().get();
-            return false;
-          }
-        });
-        return post;
-      });
-      set_posts_visible(posts, true);
-
-      // mark the hash active
-      $('.categories li>a[href="' + window.location.hash + '"]').addClass('active');
-
-      // update the list_caption
-      var list_caption = $('.posts-list-caption');
-      var caption = (page_category || '').toLowerCase() === "articles"
-        ? list_caption.attr('data-caption')
-        : ('Category: ' + page_category.replace(/_/g," "));
-      list_caption.text(caption);
-
-    } else {
-
-      // no hash filter, make all posts visible (subject to max display)
-      set_posts_visible($('.posts-list').children(), true);
-
-      // reset list caption
-      var list_caption = $('.posts-list-caption');
-      list_caption.text(list_caption.attr('data-caption'));
-
-
-    }
-  }
-
-  // more articles
-  function apply_post_limits(apply) {
-    if (apply) {
-      $('.posts-container').addClass('posts-apply-limit');
-      $('.posts-more a').removeClass('hidden');
-    } else {
-      $('.posts-container').removeClass('posts-apply-limit');
-      $('.posts-more a').addClass('hidden');
-    }
-  }
-
-  // click handling for tags
-  $('.dt-tag').click(function(ev) {
-    window.location.hash = '#category:' + $(this).text().replace(/ /g, "_");
-    return false;
-  })
-
-  // hash filter handling
-  apply_hash_filter();
-  $(window).on('hashchange',function() {
-    apply_post_limits(true);
-    apply_hash_filter();
-  });
-
-  // more articles link
-  $('.posts-more a').click(function(e) {
-    e.preventDefault();
-    apply_post_limits(false);
-    apply_hash_filter();
-    return false;
-  });
-
-}
-
-</script>
-
-
-
-<div class="posts-container posts-apply-limit l-page">
-<div class="posts-list">
-<h1 class="posts-list-caption" data-caption="G1-group2 Visual Analytics Project">G1-group2 Visual Analytics Project</h1>
-<a href="posts/Project proposal/" class="post-preview">
-<script class="post-metadata" type="text/json">{"categories":[]}</script>
-<div class="metadata">
-<div class="publishedDate">June 20, 2021</div>
-<div class="dt-authors">
-<div class="dt-author">Li Yumeng, Liang Yingfang, Shen Xiaojing</div>
-</div>
-</div>
-<div class="thumbnail">
-<img/>
-</div>
-<div class="description">
-<h2>G1-group2's Project Proposal</h2>
-<div class="dt-tags"></div>
-<p></p>
-</div>
-</a>
-</div>
-<div class="posts-more">
-<a href="#">More articles &raquo;</a>
-</div>
-</div>
-<!--/radix_placeholder_article_listing-->
 
 <div class="d-title">
-<h1>G1-group2 Visual Analytics Project</h1>
+<h1>Practice Research Paper</h1>
 <!--radix_placeholder_categories-->
 <!--/radix_placeholder_categories-->
 
 </div>
 
+<div class="d-byline">
+  Li Yumeng, Liang Yingfang, Shen Xiaojing  
+  
+<br/>08-15-2021
+</div>
 
 <div class="d-article">
-<p><img src="image/10.png" /></p>
-<h1 id="mini-challenge-2">Mini-Challenge 2:</h1>
-<p>Many of the Abila, Kronos-based employees of GAStech have company cars which are approved for both personal and business use. Those who do not have company cars have the ability to check out company trucks for business use, but these trucks cannot be used for personal business.</p>
-<p>Employees with company cars are happy to have these vehicles, because the company cars are generally much higher quality than the cars they would be able to afford otherwise. However, GAStech does not trust their employees. Without the employees? knowledge, GAStech has installed geospatial tracking software in the company vehicles. The vehicles are tracked periodically as long as they are moving.</p>
-<p>This vehicle tracking data has been made available to law enforcement to support their investigation. Unfortunately, data is not available for the day the GAStech employees went missing. Data is only available for the two weeks prior to the disappearance.</p>
-<p>To promote local businesses, Kronos based companies provide a Kronos Kares benefit card to GASTech employees giving them discounts and rewards in exchange for collecting information about their credit card purchases and preferences as recorded on loyalty cards. This data has been made available to investigators in the hopes that it can help resolve the situation. However, Kronos Kares does not collect personal information beyond purchases.</p>
-<p>As a visual analytics expert assisting law enforcement, your mission is to identify which GASTech employees made which purchases and identify suspicious patterns of behavior. You must cope with uncertainties that result from missing, conflicting, and imperfect data to make recommendations for further investigation.</p>
-<p>Use visual analytics to analyze the available data and develop responses to the questions below. In addition, prepare a video that shows how you used visual analytics to solve this challenge. Submission instructions are available here. Entry forms are available for download below.</p>
-<h2 id="tasks-and-questions">Tasks and Questions:</h2>
-<p>Using just the credit and loyalty card data, identify the most popular locations, and when they are popular. What anomalies do you see? What corrections would you recommend to correct these anomalies? Please limit your answer to 8 images and 300 words.</p>
-<p>Add the vehicle data to your analysis of the credit and loyalty card data. How does your assessment of the anomalies in question 1 change based on this new data? What discrepancies between vehicle, credit, and loyalty card data do you find? Please limit your answer to 8 images and 500 words.</p>
-<p>Can you infer the owners of each credit card and loyalty card? What is your evidence? Where are there uncertainties in your method? Where are there uncertainties in the data? Please limit your answer to 8 images and 500 words.</p>
-<p>Given the data sources provided, identify potential informal or unofficial relationships among GASTech personnel. Provide evidence for these relationships. Please limit your response to 8 images and 500 words.</p>
-<p>Do you see evidence of suspicious activity? Identify 1- 10 locations where you believe the suspicious activity is occurring, and why Please limit your response to 10 images and 500 words.</p>
-<p>If you solved this mini-challenge in 2014, how did you approach it differently this year?</p>
+<div class="d-contents d-contents-float">
+<nav class="l-text toc figcaption" id="TOC">
+<h3>Contents</h3>
+<ul>
+<li><a href="#abstract">Abstract</a></li>
+<li><a href="#introduction">1. Introduction</a></li>
+<li><a href="#motivation-of-the-application">2. Motivation of the application</a></li>
+<li><a href="#review-and-critic-on-past-works">3. Review and Critic on past works</a></li>
+<li><a href="#design-framework">4. Design Framework</a>
+<ul>
+<li><a href="#data-preparation">4.1 Data Preparation</a></li>
+<li><a href="#user-interface-design">4.2 User Interface Design</a></li>
+</ul></li>
+<li><a href="#demonstration">5. Demonstration</a>
+<ul>
+<li><a href="#to-investigate-the-most-popular-locations-over-different-time-period">5.1 To investigate the most popular locations over different time period</a></li>
+<li><a href="#to-investigate-the-transaction-amount-over-locations-in-last-14-days.">5.2 To investigate the transaction amount over locations in last 14 days.</a></li>
+<li><a href="#to-identify-the-potential-relationship">5.3 To identify the potential relationship</a></li>
+<li><a href="#suspicious-activities">5.4 Suspicious Activities</a></li>
+</ul></li>
+<li><a href="#discussion">6. Discussion</a></li>
+<li><a href="#future-work">7. Future work</a></li>
+</ul>
+</nav>
+</div>
+<h2 id="abstract">Abstract</h2>
+<p>Geospatial analytics is used to add timing and location to traditional types of data and to build data visualizations. It is a growing discipline providing important analytics in a wide range of applications in different industries, such as government application in health, weather, electric utilizations providers to do tracking, optimize routines and schedules. A shiny application was developed following a data analytics workflow process of exploratory data analysis to allow user to uncover the hidden patterns in an effective way.</p>
+<h2 id="introduction">1. Introduction</h2>
+<p>This project is to conduct the data visualization on the Vast-challenge 2021 mini-challenge 2 to give some insights on some abnormal activities. The background of this challenge is that some employees from company GAStech located in Abila is missing and we need to find out the abnormality by analysis the credit card purchase history data and gps tracking data. The analysis was mainly performed by exploratory spatial data analysis (ESDA) and exploratory data analysis (EDA). We combined the geo-spatial data with aspatial attribute data and develop a shiny application to provide interactive analysis. The data sets given are the 2 weeks data before some employees’ missing date. Including employees’ credit card and loyalty card transaction records, gps records, and car assignment. The company cars which are approved for both personal and business use, and the vehicles are tracked periodically if they are moving. An assignment was done as a groundwork for an interactive Shiny app. The purpose of this assignment is to explore the packages that can be used and finding how interactivity can be added to the application to help the users in exploring the data. Then a shiny application has been built to provide an interactive analysis.</p>
+<h2 id="motivation-of-the-application">2. Motivation of the application</h2>
+<p>Our research and development efforts were motivated by the general lack of effective and easy to use web-enabled geospatial analytics tool for discovering patterns in the map with gps data. It aims to provide car movement track with a dedicated date and car ID on a specific time or a time period. By using the free application R-shiny to build a free open-source tool without requiring users to code or understand R.</p>
+<ol type="1">
+<li>To be able to create a map that can display gps tracks in specific date and time by different car ID.</li>
+<li>To be able to plot a heatmap with information on frequency of attending by different date, time and location.</li>
+<li>To be able to plot a car movement timestamp by different car ID over different date time.</li>
+</ol>
+<h2 id="review-and-critic-on-past-works">3. Review and Critic on past works</h2>
+<p>The same challenge was performed in 2014. Hence, we can get some clue of method has been used in our analysis. A background map of this town is necessary as we have the gps data on the map to view the track of the cars’ movement. Most of the analysis has applied the map as the background map, and applied the gps data with different car ID and timelines on the map. To plot out the map with gps point on the surface, we will use tmap packages in the following paragraphs to plot the gps data. tmap package designed to generate the thematic maps with great flexibility. The syntax for creating plots is like that of ggplot2, but tailored to maps. Another method which can be applied in our analysis is to plot a heat map timeline by transactions in different locations. This can help us to observe the pattern of normal activity in certain period also some abnormality activity can be observed. Heat maps allow us to simultaneously visualize clusters of samples and feature, where data values are transformed to color scale. The most basic heatmap we can build with R and ggplot2, using the geom_tile() function. Input data must be a long format where each row provides an observation. At least 3 variables are needed per observation: x as position on the X axis; y as position on the Y axis; fill with the numeric value that will be translated in a color.</p>
+<h2 id="design-framework">4. Design Framework</h2>
+<p>The application uses R-language, using standard R packages to plot the graph and using Shiny to webify the codes for simplicity and provides options or interactivity. Following packages has been applied: ‘shiny’, ‘ggplot2’, ‘readr’, ‘clock’,‘dplyr’, ‘plotly’, ‘tidyverse’,‘raster’, ‘sf’,‘tmap’ and ‘shinythemes’.</p>
+<h3 id="data-preparation">4.1 Data Preparation</h3>
+<p>The following datasets are provided:<br />
+</p>
+<ul>
+<li>GPS tracking data (Timestamp, Car ID, latitude, longitude)</li>
+<li>Credit card data for GASTech employees (timestamp, location, price, last 4 digits of credit card number)</li>
+<li>Loyalty card data for GASTech employees (timestamp, location, price, loyalty card number)</li>
+<li>Car assignment data which lists employee, their Car ID, and their position at GASTech</li>
+<li>Geospatial files for the city and country which provide context for the GPS data.</li>
+</ul>
+<h3 id="user-interface-design">4.2 User Interface Design</h3>
+<p>Our structure of R shiny dashboard contains three parts: header, sidebar, and body, which allows interactive bivariate and correlation analysis to be performed under the exploratory data analysis. It consists of three major views namely: map, graphics and table, depicting different aspects of the data to the user.</p>
+<ol type="1">
+<li>Location</li>
+</ol>
+<ul>
+<li><p>Popular Locations- Barchart<br />
+For popular location exploration, the total number of transactions at different locations are displayed by a bar chart. Applying the day filter we can see top popular locations in specific days.<br />
+<img src="image/2.png" style="width:80.0%" /></p></li>
+<li><p>Popular Locations- Heatmap<br />
+A heatmap is used here to show the distribution of transactions in different days to detect the peak hour of different locations. We get the popular location names from the result of previous part and select the corresponding transaction data. <img src="image/3.png" style="width:80.0%" /> <img src="image/3.2.png" /></p></li>
+<li><p>Location Sales- Boxplot<br />
+For popular location exploration, the total number of transactions at different locations are displayed by a bar chart.</p></li>
+</ul>
+<p><img src="image/4.png" /></p>
+<ol start="2" type="1">
+<li>GPS Record</li>
+</ol>
+<ul>
+<li>GPS Record Timeline – Scatter plot<br />
+Since we want to detect anomalies in these locations, we not only cares about their total sales but also want to know the amount of each order. A box plot is designed to show the distribution of price of each order. A new column day is added since we want to see that distribution in different days.</li>
+</ul>
+<p><img src="image/5.jpg" /></p>
+<ul>
+<li>GPS Record Path – Time Period<br />
+GPS timeline can show different car ID appears in different timestamp, filter by day. so in this way we can clearly see which time period cars have activities the most and also observe the abnormal activities during suspicious time period such as 2am to 4am.</li>
+</ul>
+<p><img src="image/6.jpg" /></p>
+<ul>
+<li>GPS Record Path – Timestamp<br />
+GPS record path plot can work for visualization of path for different car ID, we can filter car ID and specific day, start hour and end hour. In this way we can see who hangout frequently and what specific time period and location they pass by.</li>
+</ul>
+<p><img src="image/7.jpg" /></p>
+<ol start="3" type="1">
+<li>Total Data Match<br />
+GPS Record timeline is not effective because we hardly see the points or GPS track in specific time, so we add one more graph for timestamp. In the table below we can clearly see the purchasing record which contains the time point, location, price and corresponding credit card last four number.</li>
+</ol>
+<p><img src="image/8.png" /></p>
+<p>Finally we use the data table to infer the owners of each credit card and loyalty card, matched with car ID as well as employment type and title. The relationships between employees can clearly shown on the table too.</p>
+<h2 id="demonstration">5. Demonstration</h2>
+<h3 id="to-investigate-the-most-popular-locations-over-different-time-period">5.1 To investigate the most popular locations over different time period</h3>
+<p><img src="image/3.png" /></p>
+<p>When plot the Calendar Heat map, we can see the high-density points are fall in 7 to 8 am, 12 to 1pm and 19 to 20 pm. 7 to 8 am in the morning, most people went to Brew’ve been served, followed by Hallowed Grounds, coffee cameleon, abila airport and kronos Mart. 12 to 1 pm in the noon, most people went to dinning venues to have lunch. But we still observed a few people went to Carlyle Chemical Inc., Stewart and Sons Fabrication Chostus Hotel, Desafio Golf Course, Nationwide Refinery, Ahaggo Museum.<br />
+From dinner time 7 pm to 8 pm, most people went to dinning venues to have dinner.However, one people went to abila Zacharo, and two went to Roberts and Sons.</p>
+<h3 id="to-investigate-the-transaction-amount-over-locations-in-last-14-days.">5.2 To investigate the transaction amount over locations in last 14 days.</h3>
+<p><img src="image/5.2.png" /></p>
+<p>Auto supply n’ More has one very strange transaction in Jan 13. The average order price is around 200 to 300 in this location, but we can see the price of this suspicious transaction reached 10000, which is nearly 50 times of the average amount. If this is not caused by operating error, then that may involve money laundering for those kidnappers.</p>
+<p>The suspicious transaction we detected before is made by credit card 9551. After visualizing the locations this person frequently goes, we found one daily routine of this person is to stop off at Hallowed Grounds to grab some coffee before work. Since we don’t successfully match this credit card with its corresponding car owner, we can only match the daily activity pattern of this person with the gps path data and the car owner of car 8 (Lucas Alcazer) is the most likely one.</p>
+<h3 id="to-identify-the-potential-relationship">5.3 To identify the potential relationship</h3>
+<p><img src="image/5.3.jpg" /></p>
+<p>Elsa Orilla (car id 7) and Brand Tempestad (car id 33) may be in a relationship. They show up at Chostus Hotel together multiple times (in Jan 8, 10, 14, 17). According to the gps data, we can see that both of them drive their own car and most of the time they don’t come from the same places, so it is more likely that they have an affair instead of being couples.</p>
+<h3 id="suspicious-activities">5.4 Suspicious Activities</h3>
+<p><img src="image/5.4.png" /></p>
+<p><img src="image/14.jpg" /> Nils Calixto (car id 1), Loreto Bodrogi (car id 15), Isia Vann (car id 16) and Minke Mies (car id 24) drives in the late night in Jan 7, 9, 11, 14, 16, nearly every other day. Coincidentally, Loreto, Isia and Minke are all work at the security department.</p>
+<h2 id="discussion">6. Discussion</h2>
+<p>RStudio is an Integrated Development Environment for R, a programming language for statistical computing and graphics. The application uses the free and open-source R language that offering a thriving programming environment for statistical and graphical analysis. In this data visualization challenge, we played as visual analytics experts to identify which GASTech employees made which purchases and identify suspicious patterns of behavior. We learned to cope with uncertainties that result from missing, conflicting, and imperfect data to make recommendations for further investigation.</p>
+<h2 id="future-work">7. Future work</h2>
+<p>Regarding to the social relationship between employees, it would be easier to identify if we can visualize who are in the same department. Given the data sources provided, we should also identify potential informal or unofficial relationships among GASTech personnel if combined with timestamp because we can infer from their common activities during specific time periods.</p>
 <div class="sourceCode" id="cb1"><pre class="sourceCode r distill-force-highlighting-css"><code class="sourceCode r"></code></pre></div>
 <!--radix_placeholder_article_footer-->
 <!--/radix_placeholder_article_footer-->
